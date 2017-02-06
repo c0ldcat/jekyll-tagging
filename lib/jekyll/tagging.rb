@@ -154,6 +154,15 @@ module Jekyll
     end
   end
 
+  module TagSortFilters
+    include Helpers
+    
+    def tag_sort(site)
+      site.tags.sort { |a, b| a[1].length <=> b[1].length }
+    end
+  end
+
 end
 
 Liquid::Template.register_filter(Jekyll::TaggingFilters)
+Liquid::Template.register_filter(Jekyll::TagSortFilters)
